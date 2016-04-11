@@ -5,34 +5,43 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rb;
     [SerializeField]
-    private Transform _groundChecker;
     private float _jumpForce = 5f;
-    private bool _canJump;
+    private bool _isGrounded;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+    
+    void Update()
+    {
+        if(_isGrounded)
+        {
+            Jump();
+        }
+    }
 
     public void Jump()
     {
-        if (_canJump)
-        {
-            _rb.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
-        }
+        _rb.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
+        _isGrounded = false;
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.gameObject.tag == "Ground")
+        if(coll != null)
         {
-            _canJump = true;
+            _isGrounded = true;
         }
+    }
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        _isGrounded = true;
     }
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        _canJump = false;
+        _isGrounded = false;
     }
 }
 

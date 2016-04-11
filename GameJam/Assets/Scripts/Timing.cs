@@ -28,7 +28,7 @@ public class Timing : MonoBehaviour
     IEnumerator PressRed()
     {
         _isRed = true;
-
+        
         yield return new WaitForSeconds(time);
         _isRed = false;
     }
