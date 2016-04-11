@@ -33,7 +33,7 @@ public class Timing : MonoBehaviour
     {
         buttonRed.SetActive(true);
         _isRed = true;
-
+        
         yield return new WaitForSeconds(time);
         _isRed = false;
         buttonRed.SetActive(false);
