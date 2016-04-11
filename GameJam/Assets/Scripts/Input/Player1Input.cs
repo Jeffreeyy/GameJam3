@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player1Input : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Player1Input : MonoBehaviour
     private PlayerMovement _playerMovement;
     private Timing timing;
     private float _addedChunkSpeed = 0.5f;
+    [SerializeField]
+    private Text _speedText;
 
     void Awake()
     {
@@ -84,5 +87,7 @@ public class Player1Input : MonoBehaviour
                 _cm.chunkSpeed -= _addedChunkSpeed;
             }    
         }
+
+        _speedText.text = "Speed: " + _cm.chunkSpeed;
 	}
 }
